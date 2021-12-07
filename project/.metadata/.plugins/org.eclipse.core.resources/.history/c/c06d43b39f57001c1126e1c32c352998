@@ -1,0 +1,58 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+
+Syntax:
+	(elements+=Rule)*
+;
+
+Rule:
+	 Left ':=' Right
+;
+
+Left:
+	NonTerminal
+;
+
+Right:
+	Alternative (RAlternative)*
+;
+
+RAlternative:
+	'|' Alternative	
+;
+
+Alternative:
+	NonTerminal | Terminal
+;
+
+Terminal:
+	'terminal' ID
+;
+
+NonTerminal:
+	'non-terminal' ID
+;
+
+
+
+/*
+Type:
+	DataType | Entity	
+;
+
+DataType:
+	'datatype' name=ID
+;
+
+Entity:
+	'entity' name=ID ('extends' superType=[Entity])? '{'
+		(features+=Feature)*
+	'}'
+;
+
+Feature:
+	(many?='many')? name=ID ':' type=[Type]
+;
+*/
